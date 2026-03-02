@@ -2,27 +2,13 @@
 using namespace std;
 int main()
 {
-int number;
+int num;
 int add;
 
-cout<<"enter 5 integer: ";
-cin>>number;
+cout<<"enter 4 integer: ";
+cin>>num;
 
-
-
-add=add+number;
-cin>>number;
-
-add=add+number;
-cin>>number;
-
-add=add+number;
-cin>>number;
-
-add=number+add;
-cin>>number;
-
-add=number+add;
+add=num%10+num/10%10+num/100%10+num/1000%10;
 
 cout<<"sum= "<<add;
 
