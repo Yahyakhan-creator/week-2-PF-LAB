@@ -7,10 +7,13 @@ int main()
     cin>>no;
     even=no%2;
     if(even==0)
-    {cout<<"the number is even";
+    {
+cout<<"the number is even";
     }
-    else{
+    else
+{
     cout<<"the number is odd";
     }
+return 0;
 
 }

@@ -24,16 +24,16 @@ cin>>name_3;
     {
         cout << name_1 << " is youngest" << endl;
     }
-    else
-    {
-        if(age_2 < age_1 && age_2 < age_3)
+   else  if(age_2 < age_1 && age_2 < age_3)
         {
             cout << name_2 << " is youngest" << endl;
         }
-        else
+     else
         {
             cout << name_3 << " is youngest" << endl;
         }
+       
+       
 }
 
 

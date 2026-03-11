@@ -6,43 +6,14 @@ int main()
     cout<<"enter any character in lower case:";
     cin>>vowel;
 
-    if(vowel=='a')
+    if(vowel=='a') ||(vowel=='e') || (vowel=='i') || (vowel=='o') ||(vowel=='u')
 {
     cout<<"it is a vowel";    
     }
 else
 {
-
-     if(vowel=='e')
-{
-    cout<<"it is vowel";   
-     }
-   
-     
-else
-{
-if(vowel=='i'){
-    cout<<"it is a vowel";   
-    
-
-     }
-else
-{
-if(vowel=='o'){
-    cout<<"it is a vowel";   
-       
-     }
-else{
-if(vowel=='u'){
-    cout<<"it is a vowel";  } 
-else 
-{
 cout<<"its a consonant";   
      }
-}
-}
-}
-}
 
 return 0;
 
