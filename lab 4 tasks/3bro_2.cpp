@@ -33,14 +33,11 @@ cin>>name_3;
             cout << name_3 << " is youngest" << endl;
         }
        
-       
+     return 0;  
 }
 
 
-    
-      
-return 0;
-}
+
 
     
     

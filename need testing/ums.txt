@@ -1,0 +1,432 @@
+#include <iostream>
+#include <conio.h>
+using namespace std;
+
+int main()
+{
+    int index = 5;
+    int total_students = 100;
+
+    string names[100] = {"Ali", "Taha", "Usman", "Hamza", "Zain"};
+    int ages[100] = {18, 19, 18, 20, 19};
+    float matrics[100] = {756, 987, 845, 910, 670};
+    float inters[100] = {654, 987, 780, 860, 720};
+    float ecats[100] = {300, 150, 250, 320, 200};
+    string prefs1[100] = {"CS", "CE", "EE", "CS", "SE"};
+    string prefs2[100] = {"EE", "CS", "ME", "SE", "CS"};
+    string prefs3[100] = {"SE", "CE", "CS", "EE", "ME"};
+    float aggreg[100] = {0};
+
+    while (true)
+    {
+        system("cls");
+        cout << "---------------------------------------------------" << endl;
+        cout << "----------- University Management System ----------" << endl;
+        cout << "---------------------------------------------------" << endl;
+        cout << "1. ADMIN" << endl;
+        cout << "2. User" << endl;
+        cout << "3. Exit" << endl;
+        cout << "Enter option: ";
+        int menuOption;
+        cin >> menuOption;
+
+        if (menuOption == 1)
+        {
+            bool loginSuccess = false;
+
+            for (int attempt = 0; attempt < 3; attempt++)
+            {
+                system("cls");
+                cout << "Admin Login Attempt " << attempt + 1 << endl;
+                cout << "Enter username: ";
+                string user;
+                cin >> user;
+                cout << "Enter password: ";
+                string pass;
+                cin >> pass;
+
+                if (user == "admin" && pass == "1234")
+                {
+                    loginSuccess = true;
+                    cout << "Successfully logged in." << endl;
+                    getch();
+
+                    while (true)
+                    {
+                        system("cls");
+                        cout << "--------------- ADMIN MENU ---------------" << endl;
+                        cout << "1. See all students" << endl;
+                        cout << "2. Search student" << endl;
+                        cout << "3. Update record" << endl;
+                        cout << "4. Generate merit list" << endl;
+                        cout << "5. Delete record by name" << endl;
+                        cout << "6. Log out" << endl;
+                        cout << "Choose an option: ";
+                        int adminOption;
+                        cin >> adminOption;
+
+                        if (adminOption == 1)
+                        {
+                            system("cls");
+                            cout << "name\tage\tmatric\tfsc\tecat\tp1\tp2\tp3" << endl;
+
+                            bool found = false;
+
+                            for (int i = 0; i < index; i++)
+                            {
+                                if (names[i] != "")
+                                {
+                                    cout << names[i] << "\t" << ages[i] << "\t" << matrics[i] << "\t"
+                                         << inters[i] << "\t" << ecats[i] << "\t" << prefs1[i] << "\t"
+                                         << prefs2[i] << "\t" << prefs3[i] << endl;
+                                    found = true;
+                                }
+                            }
+
+                            if (found == false)
+                            {
+                                cout << "Record not found." << endl;
+                            }
+
+                            cout << "Press any key to continue...";
+                            getch();
+                        }
+                        else if (adminOption == 2)
+                        {
+                            system("cls");
+                            cout << "Enter the name you want to search: ";
+                            string name;
+                            cin >> name;
+
+                            bool found = false;
+                            int foundindex = -1;
+
+                            for (int i = 0; i < index; i++)
+                            {
+                                if (names[i] == name)
+                                {
+                                    found = true;
+                                    foundindex = i;
+                                    break;
+                                }
+                            }
+
+                            if (found == false)
+                            {
+                                cout << "Record not found." << endl;
+                            }
+                            else
+                            {
+                                cout << "name\tage\tmatric\tfsc\tecat\tp1\tp2\tp3" << endl;
+                                cout << names[foundindex] << "\t" << ages[foundindex] << "\t"
+                                     << matrics[foundindex] << "\t" << inters[foundindex] << "\t"
+                                     << ecats[foundindex] << "\t" << prefs1[foundindex] << "\t"
+                                     << prefs2[foundindex] << "\t" << prefs3[foundindex] << endl;
+                            }
+
+                            cout << "Press any key to continue...";
+                            getch();
+                        }
+                        else if (adminOption == 3)
+                        {
+                            system("cls");
+                            cout << "Enter the name you want to update record of: ";
+                            string name;
+                            cin >> name;
+
+                            bool found = false;
+                            int foundindex = -1;
+
+                            for (int i = 0; i < index; i++)
+                            {
+                                if (names[i] == name)
+                                {
+                                    found = true;
+                                    foundindex = i;
+                                    break;
+                                }
+                            }
+
+                            if (found == false)
+                            {
+                                cout << "Record not found." << endl;
+                            }
+                            else
+                            {
+                                cout << "--------------- OLD RECORD ---------------" << endl;
+                                cout << "name\tage\tmatric\tfsc\tecat\tp1\tp2\tp3" << endl;
+                                cout << names[foundindex] << "\t" << ages[foundindex] << "\t"
+                                     << matrics[foundindex] << "\t" << inters[foundindex] << "\t"
+                                     << ecats[foundindex] << "\t" << prefs1[foundindex] << "\t"
+                                     << prefs2[foundindex] << "\t" << prefs3[foundindex] << endl;
+
+                                cout << endl;
+                                cout << "Enter new name: ";
+                                string newName;
+                                cin >> newName;
+
+                                cout << "Enter new age: ";
+                                int age;
+                                cin >> age;
+
+                                cout << "Enter new matric marks: ";
+                                float matric;
+                                cin >> matric;
+
+                                cout << "Enter new FSC marks: ";
+                                float fsc;
+                                cin >> fsc;
+
+                                cout << "Enter new ECAT marks: ";
+                                float ecat;
+                                cin >> ecat;
+
+                                cout << "Enter 1 preference: ";
+                                string pref1;
+                                cin >> pref1;
+
+                                cout << "Enter 2 preference: ";
+                                string pref2;
+                                cin >> pref2;
+
+                                cout << "Enter 3 preference: ";
+                                string pref3;
+                                cin >> pref3;
+
+                                names[foundindex] = newName;
+                                ages[foundindex] = age;
+                                matrics[foundindex] = matric;
+                                inters[foundindex] = fsc;
+                                ecats[foundindex] = ecat;
+                                prefs1[foundindex] = pref1;
+                                prefs2[foundindex] = pref2;
+                                prefs3[foundindex] = pref3;
+
+                                cout << "Record updated successfully." << endl;
+                            }
+
+                            cout << "Press any key to continue...";
+                            getch();
+                        }
+                        else if (adminOption == 4)
+                        {
+                            system("cls");
+
+                            for (int i = 0; i < index; i++)
+                            {
+                                aggreg[i] = (matrics[i] / 1100.0) * 100 * 0.30
+                                          + (inters[i] / 1100.0) * 100 * 0.40
+                                          + (ecats[i] / 400.0) * 100 * 0.30;
+                            }
+
+                            for (int i = 0; i < index - 1; i++)
+                            {
+                                for (int j = i + 1; j < index; j++)
+                                {
+                                    if (aggreg[i] < aggreg[j])
+                                    {
+                                        string tempName = names[i];
+                                        names[i] = names[j];
+                                        names[j] = tempName;
+
+                                        int tempAge = ages[i];
+                                        ages[i] = ages[j];
+                                        ages[j] = tempAge;
+
+                                        float tempMatric = matrics[i];
+                                        matrics[i] = matrics[j];
+                                        matrics[j] = tempMatric;
+
+                                        float tempInter = inters[i];
+                                        inters[i] = inters[j];
+                                        inters[j] = tempInter;
+
+                                        float tempEcat = ecats[i];
+                                        ecats[i] = ecats[j];
+                                        ecats[j] = tempEcat;
+
+                                        string tempP1 = prefs1[i];
+                                        prefs1[i] = prefs1[j];
+                                        prefs1[j] = tempP1;
+
+                                        string tempP2 = prefs2[i];
+                                        prefs2[i] = prefs2[j];
+                                        prefs2[j] = tempP2;
+
+                                        string tempP3 = prefs3[i];
+                                        prefs3[i] = prefs3[j];
+                                        prefs3[j] = tempP3;
+
+                                        float tempAgg = aggreg[i];
+                                        aggreg[i] = aggreg[j];
+                                        aggreg[j] = tempAgg;
+                                    }
+                                }
+                            }
+
+                            cout << "name\tage\taggregate" << endl;
+                            bool found = false;
+
+                            for (int i = 0; i < index; i++)
+                            {
+                                if (names[i] != "")
+                                {
+                                    cout << names[i] << "\t" << ages[i] << "\t" << aggreg[i] << endl;
+                                    found = true;
+                                }
+                            }
+
+                            if (found == false)
+                            {
+                                cout << "Record not found." << endl;
+                            }
+
+                            cout << "Press any key to continue...";
+                            getch();
+                        }
+                        else if (adminOption == 5)
+                        {
+                            system("cls");
+                            cout << "Enter the name you want to delete record of: ";
+                            string name;
+                            cin >> name;
+
+                            bool found = false;
+                            int foundindex = -1;
+
+                            for (int i = 0; i < index; i++)
+                            {
+                                if (names[i] == name)
+                                {
+                                    found = true;
+                                    foundindex = i;
+                                    break;
+                                }
+                            }
+
+                            if (found == true)
+                            {
+                                names[foundindex] = "";
+                                ages[foundindex] = 0;
+                                matrics[foundindex] = 0;
+                                inters[foundindex] = 0;
+                                ecats[foundindex] = 0;
+                                prefs1[foundindex] = "";
+                                prefs2[foundindex] = "";
+                                prefs3[foundindex] = "";
+
+                                cout << "Record of " << name << " deleted successfully." << endl;
+                            }
+                            else
+                            {
+                                cout << "Record not found." << endl;
+                            }
+
+                            cout << "Press any key to continue...";
+                            getch();
+                        }
+                        else if (adminOption == 6)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            cout << "Invalid option." << endl;
+                            cout << "Press any key to continue...";
+                            getch();
+                        }
+                    }
+
+                    break;
+                }
+                else
+                {
+                    cout << "Invalid credentials." << endl;
+                    cout << "Press any key to continue...";
+                    getch();
+                }
+            }
+
+            if (loginSuccess == false)
+            {
+                cout << "3 login attempts finished." << endl;
+                cout << "Press any key to continue...";
+                getch();
+            }
+        }
+        else if (menuOption == 2)
+        {
+            system("cls");
+
+            if (index >= total_students)
+            {
+                cout << "No space available for more students." << endl;
+                cout << "Press any key to continue...";
+                getch();
+            }
+            else
+            {
+                cout << "Welcome to student UMS" << endl;
+
+                cout << "Enter Name: ";
+                string name;
+                cin >> name;
+
+                cout << "Enter Age: ";
+                int age;
+                cin >> age;
+
+                cout << "Enter matric marks: ";
+                float matric;
+                cin >> matric;
+
+                cout << "Enter FSC marks: ";
+                float fsc;
+                cin >> fsc;
+
+                cout << "Enter ecat marks: ";
+                float ecat;
+                cin >> ecat;
+
+                cout << "Enter 1 preference: ";
+                string pref1;
+                cin >> pref1;
+
+                cout << "Enter 2 preference: ";
+                string pref2;
+                cin >> pref2;
+
+                cout << "Enter 3 preference: ";
+                string pref3;
+                cin >> pref3;
+
+                names[index] = name;
+                ages[index] = age;
+                matrics[index] = matric;
+                inters[index] = fsc;
+                ecats[index] = ecat;
+                prefs1[index] = pref1;
+                prefs2[index] = pref2;
+                prefs3[index] = pref3;
+                index = index + 1;
+
+                cout << "Your data has been saved." << endl;
+                cout << "Press any key to continue...";
+                getch();
+            }
+        }
+        else if (menuOption == 3)
+        {
+            cout << "Thanks for using this software." << endl;
+            break;
+        }
+        else
+        {
+            cout << "You entered an invalid number." << endl;
+            cout << "Press any key to continue...";
+            getch();
+        }
+    }
+
+    return 0;
+}
