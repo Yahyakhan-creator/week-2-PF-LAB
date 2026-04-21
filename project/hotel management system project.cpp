@@ -29,7 +29,8 @@ int main()
         if (choice == 1)
         {
             string user, pass;
-            cin >> user >> pass;
+            cin >> user;
+            cin >> pass;
 
             if (user == "admin" && pass == "1234")
             {
@@ -184,6 +185,8 @@ int main()
         {
             cout << "1. BOOK ROOM" << endl;
             cout << "2. VIEW BOOKING" << endl;
+            cout << "3. DELETE BOOKING"<<endl;
+            
 
             int op;
             cin >> op;
@@ -231,6 +234,33 @@ int main()
                 }
             }
         }
+        else if (op == 3)
+                    {
+                        int r;
+                        cin >> r;
+
+                        bool found = false;
+                        int foundindex = -1;
+
+                        for (int i = 0; i < index; i++)
+                        {
+                            if (roomNo[i] == r && booked[i] == true)
+                            {
+                                found = true;
+                                foundindex = i;
+                            }
+                        }
+
+                        if (found == true)
+                        {
+                            booked[foundindex] = false;
+                            cout << "Booking deleted" << endl;
+                        }
+                        else
+                        {
+                            cout << "Booking not found" << endl;
+                        }
+                    }
 
         else if (choice == 3)
         {
