@@ -21,14 +21,13 @@ void pyramidVol(double length, double widht, double height, string unit)
     {
         volume = volume * 1000000000;
     }
-    else if(unit=="meters")
+    else if (unit == "meters")
     {
-        volume=volume*1;
+        volume = volume * 1;
     }
-    else if(unit=="kilometers")
+    else if (unit == "kilometers")
     {
-        volume=volume*0.000000001;
+        volume = volume * 0.000000001;
     }
-   cout<<volume<<" cubic "<<unit<<endl;
-
+    cout << volume << " cubic " << unit << endl;
 }

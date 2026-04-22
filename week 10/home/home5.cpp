@@ -3,7 +3,8 @@ using namespace std;
 
 float calculateSalary(float base, int score, int experience);
 
-int main() {
+int main()
+{
     float baseSalary;
     int perfScore, yearsExp;
 
@@ -20,18 +21,25 @@ int main() {
     return 0;
 }
 
-float calculateSalary(float base, int score, int experience) {
+float calculateSalary(float base, int score, int experience)
+{
     float bonusPercentage = 0.0;
 
-    if (score >= 90) {
+    if (score >= 90)
+    {
         bonusPercentage = 0.20;
-    } else if (score >= 75 && score <= 89) {
+    }
+    else if (score >= 75 && score <= 89)
+    {
         bonusPercentage = 0.10;
-    } else {
+    }
+    else
+    {
         bonusPercentage = 0.05;
     }
 
-    if (experience >= 5) {
+    if (experience >= 5)
+    {
         bonusPercentage += 0.05;
     }
 

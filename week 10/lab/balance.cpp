@@ -3,7 +3,8 @@ using namespace std;
 
 float calculateBalance(float balance, int years);
 
-int main() {
+int main()
+{
     float balance;
     int years;
 
@@ -16,18 +17,25 @@ int main() {
     return 0;
 }
 
-float calculateBalance(float balance, int years) {
+float calculateBalance(float balance, int years)
+{
     float interestRate = 0.0;
 
-    if (balance < 10000) {
+    if (balance < 10000)
+    {
         interestRate = 0.05;
-    } else if (balance >= 10000 && balance <= 50000) {
+    }
+    else if (balance >= 10000 && balance <= 50000)
+    {
         interestRate = 0.07;
-    } else {
+    }
+    else
+    {
         interestRate = 0.10;
     }
 
-    if (years >= 3) {
+    if (years >= 3)
+    {
         interestRate += 0.02;
     }
 
