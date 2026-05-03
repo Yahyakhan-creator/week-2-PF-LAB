@@ -5,7 +5,6 @@ using namespace std;
 int main()
 {
     int index = 3;
-    int total_rooms = 100;
 
     int roomNo[100] = {101, 102, 103};
     string names[100] = {"Ali", "Taha", "Usman"};
@@ -16,6 +15,7 @@ int main()
     while (true)
     {
         system("cls");
+
         cout << "----------------------------------" << endl;
         cout << "----- HOTEL MANAGEMENT SYSTEM ----" << endl;
         cout << "----------------------------------" << endl;
@@ -46,23 +46,30 @@ int main()
                 if (user == "admin" && pass == "1234")
                 {
                     loginSuccess = true;
-                    cout << "Successfully logged in." << endl;
+                    cout << "Login successful" << endl;
                     getch();
                     break;
+                }
+                else
+                {
+                    cout << "Wrong credentials" << endl;
+                    getch();
                 }
             }
 
             if (!loginSuccess)
             {
-                cout << "Login failed" << endl;
+                cout << "Access denied" << endl;
                 getch();
                 continue;
             }
 
             while (true)
             {
+                system("cls");
+
                 cout << "--------------ADMIN MENU---------------" << endl;
-                cout << "1. VIEW ALL BOOKINGS" << endl;
+                cout << "1. VIEW BOOKINGS" << endl;
                 cout << "2. SEARCH BOOKING" << endl;
                 cout << "3. UPDATE BOOKING" << endl;
                 cout << "4. DELETE BOOKING" << endl;
@@ -72,113 +79,87 @@ int main()
                 int op;
                 cin >> op;
 
-                // VIEW
+                // VIEW BOOKINGS
                 if (op == 1)
                 {
-                    system("cls");
-                    cout << "Room\tName\tDays\tRent" << endl;
-
                     bool found = false;
 
                     for (int i = 0; i < index; i++)
                     {
-                        if (booked[i] == true)
+                        if (booked[i])
                         {
-                            cout << roomNo[i] << "\t" << names[i] << "\t"
-                                 << days[i] << "\t" << rent[i] << endl;
+                            cout << roomNo[i] << " "
+                                 << names[i] << " "
+                                 << days[i] << " "
+                                 << rent[i] << endl;
                             found = true;
                         }
                     }
 
-                    if (found == false)
-                    {
-                        cout << "Record not found." << endl;
-                    }
+                    if (!found)
+                        cout << "No bookings found" << endl;
 
                     getch();
                 }
 
-                // SEARCH
+                // SEARCH BOOKING
                 else if (op == 2)
                 {
-                    system("cls");
-                    cout << "Enter the Booking you want to search: ";
-
                     int r;
+                    cout << "Enter room number: ";
                     cin >> r;
 
                     bool found = false;
-                    int foundindex = -1;
 
                     for (int i = 0; i < index; i++)
                     {
                         if (roomNo[i] == r)
                         {
+                            cout << roomNo[i] << " "
+                                 << names[i] << " "
+                                 << days[i] << " "
+                                 << rent[i] << endl;
                             found = true;
-                            foundindex = i;
-                            break;
                         }
                     }
 
-                    if (found == false)
-                    {
+                    if (!found)
                         cout << "Booking not found" << endl;
-                    }
-                    else
-                    {
-                        cout << roomNo[foundindex] << "\t" << names[foundindex]
-                             << "\t" << days[foundindex] << "\t"
-                             << rent[foundindex] << endl;
-                    }
 
                     getch();
                 }
 
-                // UPDATE
+                // UPDATE BOOKING
                 else if (op == 3)
                 {
-                    system("cls");
-                    cout << "Enter the booking you want to update record of: ";
-
                     int r;
+                    cout << "Enter room number: ";
                     cin >> r;
 
                     bool found = false;
-                    int foundindex = -1;
 
                     for (int i = 0; i < index; i++)
                     {
-                        if (roomNo[i] == r && booked[i] == true)
+                        if (roomNo[i] == r && booked[i])
                         {
+                            cout << "Enter new name days rent: ";
+                            cin >> names[i] >> days[i] >> rent[i];
                             found = true;
-                            foundindex = i;
+                            break;
                         }
                     }
 
-                    if (found == true)
-                    {
-                        string name;
-                        int d;
-                        float rnt;
-
-                        cout << "Enter new Name Days Rent: ";
-                        cin >> name >> d >> rnt;
-
-                        names[foundindex] = name;
-                        days[foundindex] = d;
-                        rent[foundindex] = rnt;
-                    }
-                    else
-                    {
+                    if (!found)
                         cout << "Booking not found" << endl;
-                    }
+
+                    getch();
                 }
 
-                // DELETE
+                // DELETE BOOKING
                 else if (op == 4)
                 {
                     int r;
-                    cout << "Enter the booking you want to delete record of: ";
+                    cout << "Enter room number: ";
                     cin >> r;
 
                     bool found = false;
@@ -203,10 +184,10 @@ int main()
                         }
                     }
 
-                    if (found == false)
-                    {
+                    if (!found)
                         cout << "Booking not found" << endl;
-                    }
+
+                    getch();
                 }
 
                 // TOTAL REVENUE
@@ -216,13 +197,12 @@ int main()
 
                     for (int i = 0; i < index; i++)
                     {
-                        if (booked[i] == true)
-                        {
-                            total = total + (days[i] * rent[i]);
-                        }
+                        if (booked[i])
+                            total += days[i] * rent[i];
                     }
 
                     cout << "Total Revenue: " << total << endl;
+                    getch();
                 }
 
                 else if (op == 6)
@@ -235,90 +215,105 @@ int main()
         // ================= CUSTOMER =================
         else if (choice == 2)
         {
-            cout << "1. BOOK ROOM" << endl;
-            cout << "2. VIEW BOOKING" << endl;
-            cout << "3. DELETE BOOKING" << endl;
-            cout << "4. EXIT" << endl;
-
-            int op;
-            cin >> op;
-
-            // BOOK
-            if (op == 1)
+            while (true)
             {
-                cout << "Enter room name days rent: ";
+                system("cls");
 
-                cin >> roomNo[index]
-                    >> names[index]
-                    >> days[index]
-                    >> rent[index];
+                cout << "--------------CUSTOMER MENU---------------" << endl;
+                cout << "1. BOOK ROOM" << endl;
+                cout << "2. VIEW BOOKING" << endl;
+                cout << "3. DELETE BOOKING" << endl;
+                cout << "4. BACK" << endl;
 
-                booked[index] = true;
-                index++;
+                int op;
+                cin >> op;
 
-                cout << "Booked" << endl;
-                getch();
-            }
-
-            // VIEW
-            else if (op == 2)
-            {
-                string name;
-                cout << "Enter name: ";
-                cin >> name;
-
-                bool found = false;
-
-                for (int i = 0; i < index; i++)
+                // BOOK ROOM
+                if (op == 1)
                 {
-                    if (names[i] == name)
-                    {
-                        cout << roomNo[i] << "\t" << days[i]
-                             << "\t" << rent[i] << endl;
-                        found = true;
-                    }
+                    cout << "Enter room number: ";
+                    cin >> roomNo[index];
+
+                    cout << "Enter name: ";
+                    cin >> names[index];
+
+                    cout << "Enter days: ";
+                    cin >> days[index];
+
+                    cout << "Enter rent: ";
+                    cin >> rent[index];
+
+                    booked[index] = true;
+                    index++;
+
+                    cout << "Booked successfully" << endl;
+                    getch();
                 }
 
-                if (found == false)
+                // VIEW BOOKING
+                else if (op == 2)
                 {
-                    cout << "No booking found" << endl;
-                }
+                    string n;
+                    cout << "Enter name: ";
+                    cin >> n;
 
-                getch();
-            }
+                    bool found = false;
 
-            // DELETE
-            else if (op == 3)
-            {
-                int r;
-                cout << "Enter room number to delete: ";
-                cin >> r;
-
-                bool found = false;
-
-                for (int i = 0; i < index; i++)
-                {
-                    if (roomNo[i] == r)
+                    for (int i = 0; i < index; i++)
                     {
-                        for (int j = i; j < index - 1; j++)
+                        if (names[i] == n)
                         {
-                            roomNo[j] = roomNo[j + 1];
-                            names[j] = names[j + 1];
-                            days[j] = days[j + 1];
-                            rent[j] = rent[j + 1];
-                            booked[j] = booked[j + 1];
+                            cout << roomNo[i] << " "
+                                 << days[i] << " "
+                                 << rent[i] << endl;
+                            found = true;
                         }
-
-                        index--;
-                        found = true;
-                        cout << "Booking deleted" << endl;
-                        break;
                     }
+
+                    if (!found)
+                        cout << "No booking found" << endl;
+
+                    getch();
                 }
 
-                if (found == false)
+                // DELETE BOOKING
+                else if (op == 3)
                 {
-                    cout << "Booking not found" << endl;
+                    int r;
+                    cout << "Enter room number: ";
+                    cin >> r;
+
+                    bool found = false;
+
+                    for (int i = 0; i < index; i++)
+                    {
+                        if (roomNo[i] == r)
+                        {
+                            for (int j = i; j < index - 1; j++)
+                            {
+                                roomNo[j] = roomNo[j + 1];
+                                names[j] = names[j + 1];
+                                days[j] = days[j + 1];
+                                rent[j] = rent[j + 1];
+                                booked[j] = booked[j + 1];
+                            }
+
+                            index--;
+                            found = true;
+                            cout << "Booking deleted" << endl;
+                            break;
+                        }
+                    }
+
+                    if (!found)
+                        cout << "Booking not found" << endl;
+
+                    getch();
+                }
+
+                else if (op == 4)
+                {
+                    break;
                 }
             }
         }
